@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CDOM & fDOM Monitoring</title>
+    <style>
+        :root {
+            --primary: #2F4F4F;
+            --primary-light: #3a5f5f;
+            --secondary: #778899;
+            --accent: #20B2AA;
+            --light-bg: #f5f5f5;
+            --dark-text: #2d3748;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .info-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #eaf2ff;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 5px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .info-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Back button */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-light);
+            transform: translateX(-3px);
+        }
+
+        /* Highlight important terms */
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .feature-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+        }
+
+        .definition-box {
+            background-color: #f0f8ff;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .definition-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .sensor-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .back-button-container {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+            }
+            
+            .back-button {
+                position: relative;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBackHome()">&#8592; Back to Parameters</button>
+    </div>
+
+    <div class="container">
+        <h1>CDOM & fDOM Monitoring</h1>
+        
+        <div class="definition-box">
+            <div class="definition-title">CDOM (Chromophoric Dissolved Organic Matter)</div>
+            <p>Organic matter in water that strongly absorbs ultraviolet (UV) and visible light, giving water a yellow-brown color. Also known as Colored Dissolved Organic Matter.</p>
+        </div>
+
+        <div class="definition-box">
+            <div class="definition-title">fDOM (Fluorescent Dissolved Organic Matter)</div>
+            <p>The fraction of CDOM that fluoresces when exposed to light, serving as a fast and efficient method to track dissolved organic matter (DOM) in natural waters.</p>
+        </div>
+
+        <p>These parameters are crucial for understanding water quality, as they influence light penetration, microbial activity, and chemical processes in aquatic ecosystems.</p>
+
+        <button class="btn" onclick="toggleInfo()">Show Measurement Details</button>
+        
+        <div class="info-section" id="moreInfo" style="display: none;">
+            <h2>Why Measure CDOM/fDOM?</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Ecosystem health:</span> Affects submerged aquatic vegetation and coral reefs by limiting light penetration</li>
+                <li><span class="highlight">Pollution tracking:</span> Helps monitor wastewater discharge by detecting Total Organic Carbon (TOC)</li>
+                <li><span class="highlight">Water movement:</span> Indicates the dispersion and transport of water masses</li>
+                <li><span class="highlight">Hydrological studies:</span> Useful for research on river flow dynamics and floodplain interactions</li>
+                <li><span class="highlight">Carbon cycling:</span> Plays a key role in the global carbon cycle</li>
+            </ul>
+
+            <h2>Measurement Techniques</h2>
+            <p>Modern monitoring systems measure fDOM using <span class="highlight">in-situ fluorescence sensors</span> that:</p>
+            <ul class="feature-list">
+                <li>Excite organic matter with specific wavelengths (typically ~370nm)</li>
+                <li>Measure emitted fluorescence (~460nm)</li>
+                <li>Provide real-time, high-resolution data</li>
+                <li>Are calibrated against standard reference materials</li>
+            </ul>
+
+            <img src="images/cdom-sensor.jpg" alt="CDOM measurement sensor" class="sensor-image">
+
+            <h2>Environmental Significance</h2>
+            <p>CDOM/fDOM levels can indicate:</p>
+            <ul class="feature-list">
+                <li>Watershed characteristics and land use</li>
+                <li>Seasonal variations in organic matter inputs</li>
+                <li>Potential presence of disinfection byproduct precursors</li>
+                <li>Changes in water source or mixing patterns</li>
+            </ul>
+
+            <h2>Applications</h2>
+            <ul class="feature-list">
+                <li>Drinking water treatment monitoring</li>
+                <li>Coastal and estuarine research</li>
+                <li>Wetland and peatland studies</li>
+                <li>Climate change research</li>
+                <li>Harmful algal bloom investigations</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function goBackHome() {
+            window.location.href = 'parameters';
+        }
+
+        function toggleInfo() {
+            const info = document.getElementById("moreInfo");
+            const button = document.querySelector(".btn");
+            
+            if (info.style.display === "none") {
+                info.style.display = "block";
+                button.textContent = "Hide Measurement Details";
+            } else {
+                info.style.display = "none";
+                button.textContent = "Show Measurement Details";
+            }
+        }
+    </script>
+</body>
+</html>

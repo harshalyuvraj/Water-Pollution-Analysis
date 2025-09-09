@@ -1,0 +1,100 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* Back Button Styling */
+.back-button-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+.back-button {
+    padding: 10px 20px;
+    background-color: #3a86ff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+.back-button:hover {
+    background-color: #357ABD;
+}
+.back-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+}
+
+/* Container Styling */
+.container {
+    max-width: 400px;
+    margin: 80px auto;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h1 {
+    font-size: 1.8em;
+    margin-bottom: 1rem;
+    color: #333;
+}
+
+label {
+    font-weight: bold;
+    color: #555;
+    display: block;
+    margin: 10px 0 5px;
+}
+
+select, input[type="number"], button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 1em;
+}
+
+/* Button Styling */
+button {
+    background-color: #3a86ff;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+button:hover {
+    background-color: #2d6bc2;
+}
+
+/* Result Styling */
+#result {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #eee;
+    display: none;
+}
+#result h3 {
+    font-size: 1.4em;
+    color: #333;
+}
+#result p {
+    font-size: 1.2em;
+    color: #555;
+}
+
+/* Responsive */
+@media (max-width: 500px) {
+    .container {
+        width: 90%;
+    }
+}

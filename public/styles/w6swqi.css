@@ -1,0 +1,170 @@
+/* General Body and Font Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f7f6; /* Light background for a clean look */
+    color: #333; /* Dark text for readability */
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+/* Container Styling */
+.container {
+    max-width: 900px; /* Maximum width for a neat layout */
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #fff; /* White background for clarity */
+    border-radius: 10px; /* Rounded corners for a modern feel */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Light shadow for depth */
+}
+
+/* Header Styling */
+h3 {
+    font-size: 1.8rem;
+    color: #2F4F4F; /* Dark Slate Gray for headings */
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Table Styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #2F4F4F;
+    color: #fff;
+    font-weight: 600;
+}
+
+td {
+    background-color: #f9f9f9;
+}
+
+td input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+td input:focus {
+    border-color: #FFD700; /* Golden border on focus */
+    outline: none;
+}
+
+/* Range Box Styling */
+.range-box {
+    background-color: #f0f0f0;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Buttons Styling */
+.buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+button.btn {
+    background-color: #2F4F4F; /* Formal dark color */
+    color: white;
+    padding: 10px 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button.btn:hover {
+    background-color: #FFD700; /* Golden hover effect */
+}
+
+/* Result Box */
+.input-field {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #000;
+    box-sizing: border-box;
+}
+.range-box {
+    background: linear-gradient(to right, green, red);
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+    .index-result {
+        height: 50px;
+    
+        margin-top: 20px;
+        margin-bottom: 20px;
+        margin-left: 20px;
+        margin-right: 20px;
+        background-color: #2F4F4F;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.5em;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h3 {
+        font-size: 1.5rem;
+    }
+
+    button.btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+}
+
+/* back button  */
+        
+.back-button-container {
+    position: fixed;  
+    top: 20px;        
+    left: 20px;       
+    z-index: 1000;    
+}
+
+.back-button {
+    background-color: #007bff; /* Blue color */
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Darker blue on hover */
+}
+
+
+

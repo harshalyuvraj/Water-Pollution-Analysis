@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rhodamine in Water Quality</title>
+    <style>
+        :root {
+            --primary: #2F4F4F;
+            --primary-light: #3a5f5f;
+            --secondary: #778899;
+            --accent: #20B2AA;
+            --light-bg: #f5f5f5;
+            --dark-text: #2d3748;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+            --warning: #d9534f;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--primary-light);
+            margin-top: 30px;
+            font-size: 1.8rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .info-section {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 5px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .btn {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Back button */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-light);
+            transform: translateX(-3px);
+        }
+
+        /* Highlight important terms */
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .chemical {
+            font-weight: bold;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .feature-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+        }
+
+        .definition-box {
+            background-color: #e0f2f1;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .definition-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .sensor-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .application-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .back-button-container {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+            }
+            
+            .back-button {
+                position: relative;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBackHome()">&#8592; Back to Parameters</button>
+    </div>
+
+    <div class="container">
+        <h1>Rhodamine in Water Systems</h1>
+        
+        <div class="definition-box">
+            <div class="definition-title">Rhodamine WT</div>
+            <p>A fluorescent dye tracer used in hydrological studies to track water movement, measure flow rates, and analyze pollutant transport in surface water and groundwater systems.</p>
+        </div>
+
+        <p>Rhodamine tracing is essential for understanding water flow dynamics, pollution dispersion patterns, and wastewater retention in aquatic environments.</p>
+
+        <button class="btn" onclick="toggleInfo()">Show Measurement Details</button>
+        
+        <div class="info-section" id="moreInfo">
+            <h2>Properties of Rhodamine</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Fluorescence:</span> Emits light at specific wavelengths when excited</li>
+                <li><span class="highlight">Water solubility:</span> Highly soluble in both fresh and salt water</li>
+                <li><span class="highlight">Stability:</span> Resistant to photodegradation in water</li>
+                <li><span class="highlight">Detection sensitivity:</span> Can be detected at concentrations as low as 0.1 ppb</li>
+            </ul>
+
+            <img src="rhodamine-tracer.jpg" alt="Rhodamine tracer study in water" class="sensor-image">
+
+            <div class="warning-box">
+                <div class="warning-title">Environmental Considerations</div>
+                <ul>
+                    <li><span class="highlight">Non-toxic:</span> Generally safe at concentrations used for tracing</li>
+                    <li><span class="highlight">Regulated use:</span> Requires permits for large-scale applications</li>
+                    <li><span class="highlight">Visual impact:</span> Produces temporary pink/red coloration in water</li>
+                </ul>
+            </div>
+
+            <h2>Measurement Techniques</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Fluorometric analysis:</span>
+                    <ul>
+                        <li>Field fluorometers for real-time monitoring</li>
+                        <li>Laboratory spectrofluorometers for precise quantification</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Sampling methods:</span>
+                    <ul>
+                        <li>Continuous monitoring at fixed stations</li>
+                        <li>Discrete sampling with GPS synchronization</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Data interpretation:</span>
+                    <ul>
+                        <li>Time-concentration curve analysis</li>
+                        <li>Dispersion modeling</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>Typical Applications</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Hydrological studies:</span> 0.1-10 ppm concentration range</li>
+                <li><span class="highlight">Pollution tracing:</span> Typically 1-100 ppb depending on system size</li>
+                <li><span class="highlight">Regulatory aspects:</span>
+                    <ul>
+                        <li>Approved for use in drinking water systems (with flushing)</li>
+                        <li>Requires environmental permits for natural water bodies</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>Primary Applications</h2>
+            <div class="application-card">
+                <div class="application-title">Hydrological Studies</div>
+                <ul>
+                    <li>Time-of-travel measurements</li>
+                    <li>Flow path identification</li>
+                    <li>Groundwater-surface water interactions</li>
+                </ul>
+            </div>
+
+            <div class="application-card">
+                <div class="application-title">Pollution Tracking</div>
+                <ul>
+                    <li>Contaminant plume mapping</li>
+                    <li>Spill trajectory prediction</li>
+                    <li>Wastewater dispersion analysis</li>
+                </ul>
+            </div>
+
+            <div class="application-card">
+                <div class="application-title">Engineering Applications</div>
+                <ul>
+                    <li>Pipe network studies</li>
+                    <li>Reservoir mixing analysis</li>
+                    <li>Wastewater treatment evaluation</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBackHome() {
+            window.location.href = 'parameters';
+        }
+
+        function toggleInfo() {
+            const info = document.getElementById("moreInfo");
+            const button = document.querySelector(".btn");
+            
+            if (info.style.display === "none") {
+                info.style.display = "block";
+                button.textContent = "Hide Measurement Details";
+            } else {
+                info.style.display = "none";
+                button.textContent = "Show Measurement Details";
+            }
+        }
+    </script>
+</body>
+</html>

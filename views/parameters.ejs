@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Quality Parameters</title>
+    <link rel="stylesheet" href="/styles/parameters.css">
+    
+</head>
+<body>
+
+    <!-- Back to Home Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBackHome()">&#8592; Back to Home</button>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Water Quality Parameters</h1>
+            <p>Explore key water quality indicators used for environmental monitoring.</p>
+            <button id="themeToggle">🌙 Dark Mode</button>
+        </header>
+            <div class="grid">
+                <% const parameters = [
+                    { title: "Ammonia & Ammonium", desc: "Measures nitrogen levels as ammonia or ammonium.",  link: "/p1ammonia" },
+                    { title: "BOD", desc: "Biochemical Oxygen Demand measures dissolved oxygen usage.",   link: "/p2bod" },
+                    { title: "Blue-Green Algae", desc: "Commonly known as cyanobacteria in water.", image: "/images/algae.jpg", link: "/p3algae" },
+                    { title: "CDOM & fDOM", desc: "Measures dissolved organic matter.", image: "/images/cdom.jpg", link: "/p4cdom" },
+                    { title: "Chloride", desc: "A major component in minerals and oceans.", image: "/images/chloride.jpg", link: "/p5chloride" },
+                    { title: "Chlorophyll", desc: "Enables photosynthesis in plants and algae.", image: "/images/chlorophyll.jpg", link: "/p6chlorophyll" },
+                    { title: "Conductivity", desc: "Determines water's ability to conduct electricity.", image: "/images/conductivity.jpg", link: "/p7conductivity" },
+                    { title: "Cyanide", desc: "Found in the environment due to industrial processes.", image: "/images/cyanide.jpg", link: "/p8cyanide" },
+                    { title: "Depth", desc: "Fundamental for understanding aquatic habitats, depth measurement influences water pressure, light penetration, and ecological conditions.", image: "/images/ammonia.jpg", link: "/p9depth" },
+                    { title: "Dissolved Oxygen", desc: "Essential for aquatic life, dissolved oxygen levels reflect water quality and are crucial for maintaining healthy ecosystems.", image: "/images/bod.jpg", link: "/p10do" },
+                    { title: "Life Science Parameters", desc: "Includes measurements like glucose, lactose, and sucrose. These parameters are measured in clinical, industrial, and research applications.", image: "/images/algae.jpg", link: "/p11lsp" },
+                    { title: "Nitrate", desc: "Indicates nutrient levels and potential pollution from sources like agricultural runoff, affecting aquatic life and water quality.", image: "/images/cdom.jpg", link: "/p12nitrate" },
+                    { title: "ORP-Redox", desc: "Determine the oxidizing or reducing potential of a water sample. It’s essential for water treatment and quality assessments.", image: "/images/chloride.jpg", link: "/p13or" },
+                    { title: "pH", desc: "Enables photosynthesis in plants and algae.", image: "/images/chlorophyll.jpg", link: "/p14ph" },
+                    { title: "Phosphorus", desc: "Measures a key nutrient that—in excess—can lead to detrimental algal blooms and eutrophication in water bodies.", image: "/images/conductivity.jpg", link: "/p15phosphorus" },
+                    { title: "Rhodamine", desc: "A fluorescent dye is used as a tracer for studying water flow and pollutant dispersion in hydrological research.", image: "/images/cyanide.jpg", link: "/p16rhodamine" },
+                    { title: "Temperature", desc: "A critical factor affecting water chemistry and biological activities. One of the most fundamental parameters in environmental monitoring.", image: "/images/bod.jpg", link: "/p17temp" },
+                    { title: "Total Organic Carbon", desc: "Total Organic Carbon measures the total amount of carbon in organic compounds within water, indicating pollution levels and water treatment efficiency.", image: "/images/algae.jpg", link: "/p18toc" },
+                    { title: "Turbidity", desc: "Measures the cloudiness of water caused by suspended particles, indicating water quality and impacting aquatic life and usability.", image: "/images/cdom.jpg", link: "/p19turbidity" },
+                    { title: "Water Level", desc: "Measures the volume of water in bodies like rivers and lakes. Critical for managing flood risks and studying ecological impacts", image: "/images/chloride.jpg", link: "/p20waterlevel" },
+                    { title: "Colorimetry & Photometry", desc: "Methods used to determine water chemical concentrations by measuring light absorption and color. Requires that reagent(s) be added to a sample.", image: "/images/chlorophyll.jpg", link: "/p21cp" }
+                    
+                   
+                ]; %>
+                
+                <% parameters.forEach(param => { %>
+                    <div class="card">
+                        <a href="<%= param.link %>">
+                        
+                            <h2><%= param.title %></h2>
+
+                        </a>
+                        <p><%= param.desc %></p>
+                    </div>
+                <% }); %>
+            
+        </div>
+
+<script>
+    function goBackHome() {
+    window.location.href = 'fwater'; //  home page
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById("themeToggle");
+    const body = document.body;
+
+    themeToggle.addEventListener("click", () => {
+        body.classList.toggle("dark-mode");
+
+        // Save preference in local storage
+        if (body.classList.contains("dark-mode")) {
+            localStorage.setItem("theme", "dark");
+        } else {
+            localStorage.setItem("theme", "light");
+        }
+    });
+
+    // Load theme from local storage
+    if (localStorage.getItem("theme") === "dark") {
+        body.classList.add("dark-mode");
+    }
+
+    // Hover effect for cards
+    const cards = document.querySelectorAll(".card");
+    cards.forEach(card => {
+        card.addEventListener("mouseenter", () => {
+            card.style.transform = "scale(1.05)";
+            card.style.transition = "0.3s";
+        });
+
+        card.addEventListener("mouseleave", () => {
+            card.style.transform = "scale(1)";
+        });
+    });
+});
+
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,222 @@
+/* Enhanced Chemical Parameters CSS */
+:root {
+  --primary: #2F4F4F;
+  --primary-hover: #4f7b7b;
+    --secondary: #2ecc71;
+    --danger: #e74c3c;
+    --warning: #f39c12;
+    --light: #ecf0f1;
+    --dark: #2c3e50;
+    --border: #dfe6e9;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  body {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+    background-color: #f8fafc;
+    color: #334155;
+    line-height: 1.6;
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    padding-top: 5rem;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: #1e293b;
+    font-size: 2.25rem;
+    font-weight: 700;
+    position: relative;
+  }
+  
+  h2::after {
+    content: '';
+    position: absolute;
+    bottom: -0.75rem;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 4px;
+    background: linear-gradient(90deg, #3b82f6, #10b981);
+    border-radius: 2px;
+  }
+  
+  /* Form Container */
+  .bg-white {
+    background-color: white;
+    border-radius: 0.75rem;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    border: 1px solid var(--border);
+  }
+  
+  .bg-white:hover {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Form Elements */
+  .form-group {
+    margin-bottom: 1.5rem;
+    position: relative;
+  }
+  
+  label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: #475569;
+    font-size: 0.9375rem;
+  }
+  
+  input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background-color: #f8fafc;
+  }
+  
+  input:focus {
+    outline: none;
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    background-color: white;
+  }
+  
+  input::placeholder {
+    color: #94a3b8;
+    opacity: 1;
+  }
+  
+  /* Buttons */
+  button {
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  /* Back Button */
+  .back-button-container {
+    position: fixed;
+    top: 1.5rem;
+    left: 1.5rem;
+    z-index: 50;
+  }
+  
+  .back-button {
+    padding: 0.75rem 1.25rem;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    box-shadow: var(--shadow);
+  }
+  
+  .back-button:hover {
+    background-color: #2980b9;
+    transform: translateY(-1px);
+  }
+  
+  .back-button:active {
+    transform: translateY(0);
+  }
+  
+  /* Action Buttons */
+  .save-button {
+    background-color: var(--secondary);
+    color: white;
+  }
+  
+  .save-button:hover {
+    background-color: #27ae60;
+    transform: translateY(-1px);
+  }
+  
+  .reset-button {
+    background-color: var(--danger);
+    color: white;
+  }
+  
+  .reset-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-1px);
+  }
+  
+  /* Button Container */
+  .form-group.sm\:col-span-2 {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  /* Validation Styles */
+  input:invalid {
+    border-color: #f87171;
+  }
+  
+  input:valid {
+    border-color: #34d399;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 640px) {
+    .container {
+      padding: 1rem;
+      padding-top: 4.5rem;
+    }
+    
+    h2 {
+      font-size: 1.75rem;
+    }
+    
+    .form-group.sm\:col-span-2 {
+      flex-direction: column;
+    }
+    
+    .back-button-container {
+      top: 1rem;
+      left: 1rem;
+    }
+  }
+  
+  /* Animations */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  .form-group {
+    animation: fadeIn 0.4s ease forwards;
+  }
+  
+  /* Delay animations for each form group */
+  .form-group:nth-child(1) { animation-delay: 0.1s; }
+  .form-group:nth-child(2) { animation-delay: 0.2s; }
+  .form-group:nth-child(3) { animation-delay: 0.3s; }
+  .form-group:nth-child(4) { animation-delay: 0.4s; }
+  .form-group:nth-child(5) { animation-delay: 0.5s; }
+  .form-group:nth-child(6) { animation-delay: 0.6s; }
+  .form-group:nth-child(7) { animation-delay: 0.7s; }
+  .form-group:nth-child(8) { animation-delay: 0.8s; }
+  .form-group:nth-child(9) { animation-delay: 0.9s; }
+  .form-group.sm\:col-span-2 { animation-delay: 1s; }
+  
+  /* Focus ring for accessibility */
+  *:focus-visible {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+  }

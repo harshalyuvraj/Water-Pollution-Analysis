@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Colorimetry & Photometry Parameters</title>
+    <style>
+        :root {
+            --primary: #2F4F4F;
+            --primary-light: #3a5f5f;
+            --secondary: #778899;
+            --accent: #20B2AA;
+            --light-bg: #f5f5f5;
+            --dark-text: #2d3748;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+            --warning: #d9534f;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: var(--primary-light);
+            margin-top: 30px;
+            font-size: 1.8rem;
+        }
+
+        h3 {
+            color: var(--primary);
+            margin-top: 25px;
+            font-size: 1.4rem;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .info-section {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 5px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .btn {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Back button */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-light);
+            transform: translateX(-3px);
+        }
+
+        /* Highlight important terms */
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .feature-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+        }
+
+        .definition-box {
+            background-color: #e0f2f1;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .definition-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .product-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .product-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .spec-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .spec-table th, .spec-table td {
+            border: 1px solid var(--border-color);
+            padding: 8px 12px;
+            text-align: left;
+        }
+
+        .spec-table th {
+            background-color: var(--light-bg);
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .back-button-container {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+            }
+            
+            .back-button {
+                position: relative;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBackHome()">&#8592; Back to Parameters</button>
+    </div>
+
+    <div class="container">
+        <h1>Colorimetry & Photometry Parameters</h1>
+        
+        <div class="definition-box">
+            <div class="definition-title">Colorimetric Analysis</div>
+            <p>A measurement technique that determines the concentration of colored compounds in solution by measuring light absorbance at specific wavelengths. This method is widely used for water quality testing of various parameters.</p>
+        </div>
+
+        <p>Colorimeters and photometers provide rapid, field-deployable solutions for water quality monitoring with reagents available in tablet, powder, and liquid forms.</p>
+
+        <button class="btn" onclick="toggleInfo()">Show Product Details</button>
+        
+        <div class="info-section" id="moreInfo">
+            <div class="product-card">
+                <div class="product-title">YSI Reagent Systems</div>
+                <ul class="feature-list">
+                    <li><span class="highlight">Superior powder packs:</span> 37% larger than competitors with easy-to-open design</li>
+                    <li><span class="highlight">Variety of formats:</span> Tablet, powder, and liquid reagents available</li>
+                    <li><span class="highlight">EPA-approved methods:</span> Many reagents follow standardized protocols</li>
+                    <li><span class="highlight">Cross-compatibility:</span> Some reagents work with other manufacturers' instruments</li>
+                </ul>
+                <img src="ysi-reagents.jpg" alt="YSI reagent packs" class="product-image">
+            </div>
+
+            <div class="product-card">
+                <div class="product-title">pHotoFlex Colorimeters</div>
+                <ul class="feature-list">
+                    <li><span class="highlight">Multiparameter capability:</span> Measure multiple water quality parameters</li>
+                    <li><span class="highlight">Rugged design:</span> Waterproof and field-ready construction</li>
+                    <li><span class="highlight">Advanced optics:</span> High-precision light measurement system</li>
+                    <li><span class="highlight">Versatile applications:</span> Suitable for both lab and field testing</li>
+                </ul>
+                
+                <table class="spec-table">
+                    <tr>
+                        <th>Model</th>
+                        <th>Parameters</th>
+                        <th>Wavelength Range</th>
+                    </tr>
+                    <tr>
+                        <td>pHotoFlex Standard</td>
+                        <td>Up to 15 parameters</td>
+                        <td>400-700 nm</td>
+                    </tr>
+                    <tr>
+                        <td>pHotoFlex Turb</td>
+                        <td>Turbidity specific</td>
+                        <td>860 nm</td>
+                    </tr>
+                </table>
+            </div>
+
+            <div class="product-card">
+                <div class="product-title">Single-Parameter Colorimeters</div>
+                <ul class="feature-list">
+                    <li><span class="highlight">Dedicated measurement:</span> Optimized for specific parameters</li>
+                    <li><span class="highlight">Simplified operation:</span> Easy-to-use for routine testing</li>
+                    <li><span class="highlight">Cost-effective:</span> Affordable solution for targeted measurements</li>
+                </ul>
+                
+                <div class="product-card">
+                    <div class="product-title">YSI 900 Chlorine Colorimeter</div>
+                    <ul class="feature-list">
+                        <li>Measures free and total chlorine</li>
+                        <li>Range: 0-4 mg/L</li>
+                        <li>Resolution: 0.01 mg/L</li>
+                        <li>DPD method</li>
+                    </ul>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-title">YSI 910 COD Colorimeter</div>
+                    <ul class="feature-list">
+                        <li>Chemical Oxygen Demand measurement</li>
+                        <li>Range: 0-1500 mg/L</li>
+                        <li>Dichromate method</li>
+                        <li>Pre-programmed curves</li>
+                    </ul>
+                </div>
+                
+                <img src="single-parameter-colorimeters.jpg" alt="YSI single parameter colorimeters" class="product-image">
+            </div>
+
+            <div class="product-card">
+                <div class="product-title">Measurement Parameters</div>
+                <ul class="feature-list">
+                    <li><span class="highlight">Nutrients:</span> Nitrate, Nitrite, Ammonia, Phosphate</li>
+                    <li><span class="highlight">Oxidation:</span> COD, BOD, Chlorine</li>
+                    <li><span class="highlight">Metals:</span> Iron, Copper, Zinc</li>
+                    <li><span class="highlight">Other:</span> pH, Alkalinity, Hardness</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBackHome() {
+            window.location.href = 'parameters';
+        }
+
+        function toggleInfo() {
+            const info = document.getElementById("moreInfo");
+            const button = document.querySelector(".btn");
+            
+            if (info.style.display === "none") {
+                info.style.display = "block";
+                button.textContent = "Hide Product Details";
+            } else {
+                info.style.display = "none";
+                button.textContent = "Show Product Details";
+            }
+        }
+    </script>
+</body>
+</html>

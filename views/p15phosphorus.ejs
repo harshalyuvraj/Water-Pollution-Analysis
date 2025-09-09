@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phosphorus Measurement in Water</title>
+    <style>
+        :root {
+            --primary: #2F4F4F;
+            --primary-light: #3a5f5f;
+            --secondary: #778899;
+            --accent: #20B2AA;
+            --light-bg: #f5f5f5;
+            --dark-text: #2d3748;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .info-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e8f5e9;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 5px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .info-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Back button */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-light);
+            transform: translateX(-3px);
+        }
+
+        /* Highlight important terms */
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .chemical {
+            font-weight: bold;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .feature-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+        }
+
+        .definition-box {
+            background-color: #e0f2f1;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .definition-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .sensor-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .warning-box {
+            background-color: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .warning-title {
+            font-weight: bold;
+            color: #856404;
+            margin-bottom: 8px;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .application-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .back-button-container {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+            }
+            
+            .back-button {
+                position: relative;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBackHome()">&#8592; Back to Parameters</button>
+    </div>
+
+    <div class="container">
+        <h1>Phosphorus in Water Systems</h1>
+        
+        <div class="definition-box">
+            <div class="definition-title">Phosphorus (P)</div>
+            <p>An essential nutrient for all life forms, primarily existing in water as phosphates (PO₄³⁻). While crucial for biological processes, excess phosphorus can lead to eutrophication and harmful algal blooms in aquatic ecosystems.</p>
+        </div>
+
+        <p>Phosphorus monitoring is critical for managing water quality, preventing ecosystem degradation, and optimizing agricultural practices.</p>
+
+        <button class="btn" onclick="toggleInfo()">Show Measurement Details</button>
+        
+        <div class="info-section" id="moreInfo" style="display: none;">
+            <h2>Forms of Phosphorus in Water</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Orthophosphate (PO₄³⁻):</span> Soluble reactive phosphorus readily available to organisms</li>
+                <li><span class="highlight">Condensed phosphates:</span> Polyphosphates used in detergents and industrial applications</li>
+                <li><span class="highlight">Organic phosphorus:</span> Bound in living or decaying organic matter</li>
+                <li><span class="highlight">Particulate phosphorus:</span> Adsorbed to soil particles or sediments</li>
+            </ul>
+
+            <img src="images/phosphorus-cycle.jpg" alt="Phosphorus cycle diagram" class="sensor-image">
+
+            <div class="warning-box">
+                <div class="warning-title">Environmental Impacts</div>
+                <ul>
+                    <li><span class="highlight">Eutrophication:</span> Excessive phosphorus leads to algal blooms and oxygen depletion</li>
+                    <li><span class="highlight">Water quality degradation:</span> Affects drinking water supplies and aquatic habitats</li>
+                    <li><span class="highlight">Economic costs:</span> Increased water treatment expenses and fishery losses</li>
+                </ul>
+            </div>
+
+            <h2>Measurement Techniques</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Colorimetric methods:</span>
+                    <ul>
+                        <li>Molybdenum blue method for orthophosphate</li>
+                        <li>Vanadomolybdate method for total phosphorus</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Sample preparation:</span>
+                    <ul>
+                        <li>Filtration for dissolved phosphorus analysis</li>
+                        <li>Acid digestion for total phosphorus determination</li>
+                    </ul>
+                </li>
+                <li><span class="highlight">Advanced techniques:</span>
+                    <ul>
+                        <li>Ion chromatography for speciated analysis</li>
+                        <li>ICP-MS for ultra-trace level detection</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>Typical Concentration Ranges</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Natural waters:</span> 0.01-0.03 mg/L total phosphorus</li>
+                <li><span class="highlight">Eutrophic waters:</span> > 0.1 mg/L total phosphorus</li>
+                <li><span class="highlight">Regulatory limits:</span>
+                    <ul>
+                        <li>Drinking water: No direct limit (regulated through PO₄³⁻)</li>
+                        <li>Wastewater discharge: Typically 0.1-1.0 mg/L total P</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>Primary Sources and Management</h2>
+            <div class="application-card">
+                <div class="application-title">Agricultural Sources</div>
+                <ul>
+                    <li>Fertilizer runoff management</li>
+                    <li>Manure handling practices</li>
+                    <li>Conservation tillage methods</li>
+                </ul>
+            </div>
+
+            <div class="application-card">
+                <div class="application-title">Urban Sources</div>
+                <ul>
+                    <li>Stormwater runoff control</li>
+                    <li>Phosphate-free detergents</li>
+                    <li>Improved wastewater treatment</li>
+                </ul>
+            </div>
+
+            <div class="application-card">
+                <div class="application-title">Natural Sources</div>
+                <ul>
+                    <li>Watershed protection</li>
+                    <li>Riparian buffer zones</li>
+                    <li>Wetland restoration</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBackHome() {
+            window.location.href = 'parameters';
+        }
+
+        function toggleInfo() {
+            const info = document.getElementById("moreInfo");
+            const button = document.querySelector(".btn");
+            
+            if (info.style.display === "none") {
+                info.style.display = "block";
+                button.textContent = "Hide Measurement Details";
+            } else {
+                info.style.display = "none";
+                button.textContent = "Show Measurement Details";
+            }
+        }
+    </script>
+</body>
+</html>

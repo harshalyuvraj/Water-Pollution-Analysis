@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In | Sign Up - Water Treatment</title>
+<!-- Google Consent Mode -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+
+  // Default consent: Denied until user accepts
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied'
+  });
+</script>
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-4LZS00XGWE"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+ 
+</script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/welcome.css">
+</head>
+<body>
+<!-- Consent Banner -->
+<div id="consent-banner" class="fixed bottom-0 w-full bg-gray-800 text-white text-center p-4 z-50">
+  <p class="mb-2">This website uses cookies for analytics. Do you accept?</p>
+  <button onclick="acceptCookies()" class="bg-green-500 hover:bg-green-600 px-4 py-2 rounded mx-2">Accept</button>
+  <button onclick="declineCookies()" class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded mx-2">Decline</button>
+</div>
+
+    <div class="mode-toggle-container">
+        <button id="modeToggle" class="mode-toggle">🌙</button>
+    </div>
+    <div class="container">
+        <div class="form-box">
+            <div class="welcome-text" id="welcomeText"></div>
+            <h2 id="form-title">Sign In</h2>
+            <div class="toggle-buttons">
+                <button id="signInBtn" class="active" onclick="toggleForm('signin')">Sign In</button>
+                <button id="signUpBtn" onclick="toggleForm('signup')">Sign Up</button>
+            </div>
+
+            <form id="signInForm" onsubmit="handleFormSubmit(event, '/login')">
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Sign In</button>
+            </form>
+
+            <form id="signUpForm" class="hidden" onsubmit="handleFormSubmit(event, '/signup')">
+                <input type="text" name="name" placeholder="Name" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Typing animation for welcome text
+        const welcomeText = "Welcome to Water Analysis";
+        let i = 0;
+        const speed = 100; // typing speed in ms
+        
+        function typeWriter() {
+            if (i < welcomeText.length) {
+                document.getElementById("welcomeText").innerHTML += welcomeText.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            }
+        }
+
+        // Start the typing animation when page loads
+        window.onload = function() {
+            typeWriter();
+        };
+
+        function toggleForm(formType) {
+            const signInForm = document.getElementById('signInForm');
+            const signUpForm = document.getElementById('signUpForm');
+            const signInBtn = document.getElementById('signInBtn');
+            const signUpBtn = document.getElementById('signUpBtn');
+            
+            if (formType === 'signin') {
+                signInForm.style.display = 'block';
+                signUpForm.style.display = 'none';
+                signInBtn.classList.add('active');
+                signUpBtn.classList.remove('active');
+                document.getElementById('form-title').innerText = 'Sign In';
+            } else {
+                signInForm.style.display = 'none';
+                signUpForm.style.display = 'block';
+                signUpBtn.classList.add('active');
+                signInBtn.classList.remove('active');
+                document.getElementById('form-title').innerText = 'Sign Up';
+            }
+        }
+
+        async function handleFormSubmit(event, action) {
+            event.preventDefault();
+            const formData = new FormData(event.target);
+            
+            const response = await fetch(action, {
+                method: 'POST',
+                body: new URLSearchParams(formData),
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
+            });
+
+            const result = await response.json();
+            if (response.ok) {
+                window.location.href = '/fwater';
+            } else {
+                alert(result.message);
+            }
+        }
+
+        document.getElementById('modeToggle').addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            this.textContent = document.body.classList.contains('dark-mode') ? '☀️' : '🌙';
+        });
+    </script>
+<script>
+  function acceptCookies() {
+    gtag('consent', 'update', {
+      'ad_storage': 'granted',
+      'analytics_storage': 'granted'
+    });
+    gtag('config', 'G-4LZS00XGWE'); // Only run GA after consent
+    document.getElementById('consent-banner').style.display = 'none';
+  }
+
+  function declineCookies() {
+    gtag('consent', 'update', {
+      'ad_storage': 'denied',
+      'analytics_storage': 'denied'
+    });
+ gtag('config', 'G-4LZS00XGWE');
+    document.getElementById('consent-banner').style.display = 'none';
+  }
+</script>
+
+</body>
+</html>

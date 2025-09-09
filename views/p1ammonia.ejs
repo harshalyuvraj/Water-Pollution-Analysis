@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ammonia Information</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        :root {
+            --primary: #2F4F4F;
+            --primary-light: #3a5f5f;
+            --secondary: #778899;
+            --accent: #20B2AA;
+            --light-bg: #f5f5f5;
+            --dark-text: #2d3748;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+            --dark-bg: #1e1e1e;
+            --dark-card: #2b2b2b;
+            --dark-text-color: #dddddd;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        body.dark-mode {
+            background-color: var(--dark-bg);
+            color: var(--dark-text-color);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .dark-mode .container {
+            background: var(--dark-card);
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        .dark-mode h1 {
+            color: var(--accent);
+            border-bottom-color: var(--primary-light);
+        }
+
+        p {
+            line-height: 1.8;
+            color: var(--dark-text);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .dark-mode p {
+            color: var(--dark-text-color);
+        }
+
+        .responsive-img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease;
+        }
+
+        .responsive-img:hover {
+            transform: scale(1.02);
+        }
+
+        button {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        button:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        .dark-mode button {
+            background-color: var(--accent);
+        }
+
+        .dark-mode button:hover {
+            background-color: var(--primary-light);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .chemical-formula {
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            font-weight: bold;
+            color: var(--accent);
+        }
+
+        .dark-mode .chemical-formula {
+            color: var(--primary-light);
+        }
+
+        /* Back button */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-light);
+            transform: translateX(-3px);
+        }
+
+        .dark-mode .back-button {
+            background-color: var(--accent);
+        }
+
+        .dark-mode .back-button:hover {
+            background-color: var(--primary-light);
+        }
+
+        /* Theme toggle */
+        #themeToggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+            background: var(--primary);
+            color: white;
+            border-radius: 5px;
+            transition: background 0.3s;
+            z-index: 1000;
+        }
+
+        #themeToggle:hover {
+            background: var(--primary-light);
+        }
+
+        
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .back-button-container {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBackHome()">&#8592; Back to Parameters</button>
+    </div>
+
+   
+
+    <div class="container">
+        <h1>Ammonia & Ammonium in Water</h1>
+        <p>
+            <span class="chemical-formula">Ammonium (NH<sub>4</sub><sup>+</sup>)</span> or its uncharged form <span class="chemical-formula">ammonia (NH<sub>3</sub>)</span> is a form of nitrogen which
+            aquatic plants can absorb and incorporate into proteins, amino acids, and other molecules.
+        </p>
+        <p>
+            High concentrations of ammonium can enhance the growth of algae and aquatic plants.
+            Bacteria can also convert high ammonium to <span class="chemical-formula">nitrate (NO<sub>3</sub><sup>-</sup>)</span> in the process of nitrification,
+            which lowers dissolved oxygen.
+        </p>
+        <img src="images/ammonia.png" alt="Ammonia Sensor" class="responsive-img">
+        <p>
+            Ammonia in water is either un-ionized ammonia or the ammonium ion. Typically, the value
+            reported is the sum of both forms and is reported as total ammonia or simply ammonia.
+            The relative proportion of the two forms present in water is highly affected by pH.
+        </p>
+        <button id="toggleInfo">Show More Information</button>
+        <div id="extraInfo" class="hidden">
+            <p>
+                <strong>Un-ionized ammonia</strong> is the toxic form and predominates when pH is high. The <span class="chemical-formula">NH<sub>4</sub><sup>+</sup></span> ion is
+                relatively non-toxic and predominates when pH is low.
+            </p>
+            <p>
+                The equilibrium between <span class="chemical-formula">NH<sub>3</sub></span> and <span class="chemical-formula">NH<sub>4</sub><sup>+</sup></span> is also affected by temperature. More toxic ammonia is present in
+                warmer water than in cooler water.
+            </p>
+            <p>
+                Regular monitoring of ammonia levels is crucial in aquaculture, wastewater treatment, and environmental studies
+                to prevent toxic conditions for aquatic life.
+            </p>
+        </div>
+    </div>
+    <script>
+        function goBackHome() {
+            window.location.href = 'parameters';
+        }
+
+        document.getElementById("toggleInfo").addEventListener("click", function() {
+            const extraInfo = document.getElementById("extraInfo");
+            const button = document.getElementById("toggleInfo");
+            
+            if (extraInfo.classList.contains("hidden")) {
+                extraInfo.classList.remove("hidden");
+                button.textContent = "Show Less Information";
+            } else {
+                extraInfo.classList.add("hidden");
+                button.textContent = "Show More Information";
+            }
+        });
+
+       
+    </script>
+</body>
+</html>

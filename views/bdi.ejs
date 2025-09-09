@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biological Data Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2F4F4F;
+            --primary-light: #3a5f5f;
+            --secondary: #778899;
+            --accent: #20B2AA;
+            --light-bg: #f5f5f5;
+            --dark-text: #2d3748;
+            --border-color: #e0e0e0;
+            --critical: #e53e3e;
+            --warning: #dd6b20;
+            --safe: #38a169;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            margin: 0;
+            padding: 20px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            overflow-x: auto;
+        }
+
+        h2 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary);
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--border-color);
+            font-weight: 700;
+            font-size: 28px;
+            white-space: nowrap;
+        }
+
+        .back-button-container {
+            margin-bottom: 25px;
+        }
+
+        .back-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 2px 10px rgba(47, 79, 79, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            font-weight: 500;
+        }
+
+        table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 16px;
+        }
+
+        th, td {
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
+            text-align: left;
+            vertical-align: top;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+
+        th {
+            background-color: var(--primary);
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+
+        /* Fixed column widths */
+        th:nth-child(1), td:nth-child(1) { width: 80px; }  /* Serial No */
+        th:nth-child(2), td:nth-child(2) { width: 120px; } /* Sample ID */
+        th:nth-child(3), td:nth-child(3) { width: 180px; } /* Coliform */
+        th:nth-child(4), td:nth-child(4) { width: 180px; } /* Fecal */
+        th:nth-child(5), td:nth-child(5) { width: 150px; } /* Algal */
+        th:nth-child(6), td:nth-child(6) { width: 150px; } /* Pathogens */
+        th:nth-child(7), td:nth-child(7) { width: 140px; } /* Date */
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        tr:hover {
+            background-color: #f1f5f9;
+        }
+
+        .text-content {
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            line-clamp: 3;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 4.5em;
+            line-height: 1.5em;
+        }
+
+        .no-data {
+            text-align: center;
+            padding: 20px;
+            color: var(--secondary);
+            font-style: italic;
+        }
+
+        /* Value indicators */
+        .value-critical {
+            color: var(--critical);
+            font-weight: 700;
+            background-color: rgba(229, 62, 62, 0.1);
+        }
+
+        .value-warning {
+            color: var(--warning);
+            font-weight: 600;
+        }
+
+        .value-safe {
+            color: var(--safe);
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+            
+            th, td {
+                padding: 8px 10px;
+                font-size: 14px;
+            }
+            
+            /* Adjust column widths for mobile */
+            th:nth-child(1), td:nth-child(1) { width: 60px; }
+            th:nth-child(2), td:nth-child(2) { width: 100px; }
+            th:nth-child(7), td:nth-child(7) { width: 120px; }
+
+        }
+    </style>
+</head>
+<body>
+    <!-- Rest of your HTML remains exactly the same -->
+    <div class="container">
+        <!-- Back to Home Button -->
+        <div class="back-button-container">
+            <button class="back-button" onclick="goBackHome()">Back to Home</button>
+        </div>
+
+        <h2>Biological Data Records</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>No.</th>
+                    <th>Sample ID</th>
+                    <th>Coliform Bacteria (MPN/100mL)</th>
+                    <th>Fecal Coliform (MPN/100mL)</th>
+                    <th>Algal Count (cells/mL)</th>
+                    <th>Pathogens (MPN/100mL)</th>
+                    <th>Date</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <% if (typeof biologicalData !== 'undefined' && biologicalData.length > 0) { %>        
+                    <% biologicalData.forEach((data,index) => { %>
+                        <tr>
+                            <td><div class="text-content"><%= index + 1 %></div></td>
+                            <td><div class="text-content"><%= data.sampleID %></div></td>
+                            <td class="biological-value" data-type="coliform" data-value="<%= data.coliformBacteria %>">
+                                <div class="text-content"><%= data.coliformBacteria %></div>
+                            </td>
+                            <td class="biological-value" data-type="fecal" data-value="<%= data.fecalColiform %>">
+                                <div class="text-content"><%= data.fecalColiform %></div>
+                            </td>
+                            <td class="biological-value" data-type="algal" data-value="<%= data.algalCount %>">
+                                <div class="text-content"><%= data.algalCount %></div>
+                            </td>
+                            <td class="biological-value" data-type="pathogen" data-value="<%= data.pathogens %>">
+                                <div class="text-content"><%= data.pathogens %></div>
+                            </td>
+                            <td><div class="text-content"><%= new Date(data.date).toDateString() %></div></td>
+
+                        </tr>
+                    <% }); %>
+                <% } else { %>
+                    <tr><td colspan="7" class="no-data">No biological data available</td></tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+
+    <script>
+        function goBackHome() {
+            window.location.href = '/information';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            // Apply classification
+            const biologicalValues = document.querySelectorAll('.biological-value');
+            
+            biologicalValues.forEach(cell => {
+                const value = parseFloat(cell.getAttribute('data-value')) || 0;
+                const type = cell.getAttribute('data-type');
+                let className = '';
+                
+                if (type === 'coliform') {
+                    className = value > 400 ? 'value-critical' : value > 200 ? 'value-warning' : 'value-safe';
+                } else if (type === 'fecal') {
+                    className = value > 200 ? 'value-critical' : value > 100 ? 'value-warning' : 'value-safe';
+                } else if (type === 'algal') {
+                    className = value > 10000 ? 'value-critical' : value > 5000 ? 'value-warning' : value < 100 ? 'value-warning' : 'value-safe';
+                } else if (type === 'pathogen') {
+                    className = value > 0 ? 'value-critical' : 'value-safe';
+                }
+                
+                if (className) {
+                    cell.classList.add(className);
+                }
+            });
+
+            // Make table rows interactive
+            const rows = document.querySelectorAll('tbody tr');
+            rows.forEach(row => {
+                row.addEventListener('click', function() {
+                    rows.forEach(r => r.classList.remove('active-row'));
+                    this.classList.add('active-row');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

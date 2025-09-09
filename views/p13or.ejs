@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ORP (Oxidation-Reduction Potential) Measurement</title>
+    <style>
+        :root {
+            --primary: #2F4F4F;
+            --primary-light: #3a5f5f;
+            --secondary: #778899;
+            --accent: #20B2AA;
+            --light-bg: #f5f5f5;
+            --dark-text: #2d3748;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+            --warning: #d9534f;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .info-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 5px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .info-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Back button */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-light);
+            transform: translateX(-3px);
+        }
+
+        /* Highlight important terms */
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .chemical {
+            font-weight: bold;
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .feature-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+        }
+
+        .definition-box {
+            background-color: #e1f5fe;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .definition-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .sensor-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        .application-card {
+            background: white;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-left: 4px solid var(--accent);
+        }
+
+        .application-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .back-button-container {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+            }
+            
+            .back-button {
+                position: relative;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBackHome()">&#8592; Back to Parameters</button>
+    </div>
+
+    <div class="container">
+        <h1>Oxidation-Reduction Potential (ORP) Measurement</h1>
+        
+        <div class="definition-box">
+            <div class="definition-title">ORP (Oxidation-Reduction Potential)</div>
+            <p>A measurement of a solution's ability to oxidize or reduce substances, expressed in millivolts (mV). Positive values indicate oxidizing conditions, while negative values indicate reducing conditions.</p>
+        </div>
+
+        <p>ORP is a critical parameter for assessing water quality, disinfection effectiveness, and chemical processes in aquatic environments.</p>
+
+        <button class="btn" onclick="toggleInfo()">Show Measurement Details</button>
+        
+        <div class="info-section" id="moreInfo" style="display: none;">
+            <h2>Fundamentals of ORP</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Electron transfer:</span> ORP measures the tendency of a chemical species to acquire electrons (reduction) or lose electrons (oxidation)</li>
+                <li><span class="highlight">Measurement scale:</span> Ranges from -2000 mV (strong reducing) to +2000 mV (strong oxidizing)</li>
+                <li><span class="highlight">Standard hydrogen electrode (SHE):</span> Reference point (0 mV) for all ORP measurements</li>
+                <li><span class="highlight">Nernst equation:</span> <div class="formula">E = E° - (RT/nF)lnQ</div> describes the relationship between ORP and chemical activity</li>
+            </ul>
+
+            <img src="images/orp-sensor.jpg" alt="ORP measurement sensor" class="sensor-image">
+
+            <h2>Measurement Technology</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">ORP electrodes:</span> Consist of a platinum or gold measuring electrode and a reference electrode</li>
+                <li><span class="highlight">Working principle:</span> Measures voltage difference generated by electron transfer reactions</li>
+                <li><span class="highlight">Calibration:</span> Typically performed using Zobell's solution (+228 mV) or Light's solution (+468 mV)</li>
+                <li><span class="highlight">Maintenance:</span> Requires regular cleaning and storage in proper solution</li>
+            </ul>
+
+            <h2>Key Applications</h2>
+            <div class="application-card">
+                <div class="application-title">Water Treatment</div>
+                <ul>
+                    <li>Monitoring chlorine disinfection (600-800 mV ideal for drinking water)</li>
+                    <li>Ozone treatment control</li>
+                    <li>Swimming pool and spa sanitation</li>
+                </ul>
+            </div>
+
+            <div class="application-card">
+                <div class="application-title">Environmental Monitoring</div>
+                <ul>
+                    <li>Assessing redox conditions in natural waters</li>
+                    <li>Detecting anoxic conditions in lakes and reservoirs</li>
+                    <li>Monitoring groundwater contamination</li>
+                </ul>
+            </div>
+
+            <div class="application-card">
+                <div class="application-title">Industrial Processes</div>
+                <ul>
+                    <li>Wastewater treatment process control</li>
+                    <li>Cooling water system monitoring</li>
+                    <li>Chemical manufacturing processes</li>
+                </ul>
+            </div>
+
+            <h2>Interpretation of ORP Values</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">> +400 mV:</span> Oxidizing conditions (presence of oxygen, chlorine, ozone)</li>
+                <li><span class="highlight">+100 to +400 mV:</span> Aerobic conditions</li>
+                <li><span class="highlight">-100 to +100 mV:</span> Transitional (mixed aerobic/anaerobic)</li>
+                <li><span class="highlight">< -100 mV:</span> Reducing conditions (presence of sulfides, organic matter)</li>
+            </ul>
+
+            <h2>Factors Affecting ORP</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">pH:</span> ORP decreases by approximately 59 mV for each pH unit increase</li>
+                <li><span class="highlight">Temperature:</span> Affects reaction kinetics and electrode response</li>
+                <li><span class="highlight">Dissolved oxygen:</span> Major contributor to oxidizing potential</li>
+                <li><span class="highlight">Chemical contaminants:</span> Reducing agents like H₂S lower ORP</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function goBackHome() {
+            window.location.href = 'parameters';
+        }
+
+        function toggleInfo() {
+            const info = document.getElementById("moreInfo");
+            const button = document.querySelector(".btn");
+            
+            if (info.style.display === "none") {
+                info.style.display = "block";
+                button.textContent = "Hide Measurement Details";
+            } else {
+                info.style.display = "none";
+                button.textContent = "Show Measurement Details";
+            }
+        }
+    </script>
+</body>
+</html>

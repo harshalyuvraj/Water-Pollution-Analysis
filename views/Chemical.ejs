@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chemical Parameters</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/chemical.css">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Back to Home Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBackHome()">&#8592; Back to Home</button>
+    </div>
+
+    <div class="container mx-auto p-6">
+        <h2 class="text-3xl font-bold text-gray-700 mb-6">Chemical Parameters</h2>
+
+        <!-- Form Box -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <!-- Inside <form> tag, set action attribute to route for backend -->
+<form class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="chemical-parameters-form" action="/chemical" method="POST">
+    <!-- Sample ID -->
+    <div class="form-group">
+        <label for="sampleID" class="block text-gray-700 font-semibold mb-2">Sample ID</label>
+        <input type="text" id="sampleID" name="sampleID" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter Sample ID">
+    </div>
+
+    <!-- Dissolved Oxygen (DO) -->
+    <div class="form-group">
+        <label for="do" class="block text-gray-700 font-semibold mb-2">Dissolved Oxygen (DO)</label>
+        <input type="number" step="0.01" id="do" name="do" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter DO">
+    </div>
+
+    <!-- Biochemical Oxygen Demand (BOD) -->
+    <div class="form-group">
+        <label for="bod" class="block text-gray-700 font-semibold mb-2">Biochemical Oxygen Demand (BOD)</label>
+        <input type="number" step="0.01" id="bod" name="bod" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter BOD">
+    </div>
+
+    <!-- Chemical Oxygen Demand (COD) -->
+    <div class="form-group">
+        <label for="cod" class="block text-gray-700 font-semibold mb-2">Chemical Oxygen Demand (COD)</label>
+        <input type="number" step="0.01" id="cod" name="cod" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter COD">
+    </div>
+
+    <!-- NH3 -->
+    <div class="form-group">
+        <label for="nh3" class="block text-gray-700 font-semibold mb-2">NH3</label>
+        <input type="number" step="0.01" id="nh3" name="nh3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter NH3">
+    </div>
+    
+    <!-- NO3 -->
+    <div class="form-group">
+        <label for="no3" class="block text-gray-700 font-semibold mb-2">NO3</label>
+        <input type="number" step="0.01" id="no3" name="no3" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter NO3">
+    </div>
+
+    <!-- NO2 -->
+    <div class="form-group">
+        <label for="no2" class="block text-gray-700 font-semibold mb-2">NO2</label>
+        <input type="number" step="0.01" id="no2" name="no2" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter NO2">
+    </div>
+
+    <!-- Phosphate -->
+    <div class="form-group">
+        <label for="phosphate" class="block text-gray-700 font-semibold mb-2">Phosphate</label>
+        <input type="number" step="0.01" id="phosphate" name="phosphate" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter Phosphate">
+    </div>
+
+    <!-- Chlorite -->
+    <div class="form-group">
+        <label for="chlorite" class="block text-gray-700 font-semibold mb-2">Chlorite</label>
+        <input type="number" step="0.01" id="chlorite" name="chlorite" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter Chlorite">
+    </div>
+
+
+    <!-- Save and Reset Buttons -->
+    <div class="form-group sm:col-span-2 flex justify-between">
+        <button type="submit" class="save-button w-full sm:w-auto py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">Save</button>
+        <button type="reset" class="reset-button w-full sm:w-auto py-2 px-4 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">Reset</button>
+    </div>
+</form>
+
+        </div>
+    </div>
+
+    <!-- JavaScript for Back Button, Save, and Reset -->
+    <script>
+        function goBackHome() {
+            window.location.href = 'fwater'; // Assuming index.html is the home page
+        }
+
+        function saveFormData() {
+            const sampleID = document.getElementById('sampleID').value;
+            const doVal = document.getElementById('do').value;
+            const bod = document.getElementById('bod').value;
+            const cod = document.getElementById('cod').value;
+            const nh3 = document.getElementById('nh3').value;
+            const no3 = document.getElementById('no3').value;
+            const no2 = document.getElementById('no2').value;
+            const phosphate = document.getElementById('phosphate').value;
+            const chlorite = document.getElementById('chlorite').value;
+
+            if (sampleID && doVal && bod && cod && nh3 && no3 && no2 && phosphate && chlorite) {
+                alert(`Data saved:\nSample ID: ${sampleID}\nDO: ${doVal}\nBOD: ${bod}\nCOD: ${cod}\nNH3: ${nh3}\nNO3-: ${no3}\nNO2-: ${no2}\nPhosphate: ${phosphate}\nChlorite: ${chlorite}`);
+                document.getElementById('chemical-parameters-form').reset();
+            } else {
+                alert('Please fill in all fields before saving.');
+            }
+        }
+    </script>
+</body>
+
+</html>

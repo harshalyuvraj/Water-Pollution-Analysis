@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Water Depth Measurement</title>
+    <style>
+        :root {
+            --primary: #2F4F4F;
+            --primary-light: #3a5f5f;
+            --secondary: #778899;
+            --accent: #20B2AA;
+            --light-bg: #f5f5f5;
+            --dark-text: #2d3748;
+            --border-color: #e0e0e0;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--dark-text);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            padding: 30px;
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: var(--primary);
+            text-align: center;
+            margin-bottom: 25px;
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .info-section {
+            margin-top: 30px;
+            padding: 20px;
+            background: #e3f2fd;
+            border-left: 4px solid var(--primary);
+            border-radius: 0 5px 5px 0;
+            transition: all 0.3s ease;
+        }
+
+        .info-section p:last-child {
+            margin-bottom: 0;
+        }
+
+        .btn {
+            display: block;
+            margin: 25px auto;
+            padding: 12px 25px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            background-color: var(--primary-light);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+
+        /* Back button */
+        .back-button-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-light);
+            transform: translateX(-3px);
+        }
+
+        /* Highlight important terms */
+        .highlight {
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .feature-list {
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+
+        .feature-list li {
+            margin-bottom: 10px;
+        }
+
+        .definition-box {
+            background-color: #e1f5fe;
+            border-left: 4px solid var(--accent);
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 5px 5px 0;
+        }
+
+        .definition-title {
+            font-weight: bold;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+
+        .sensor-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            border: 1px solid var(--border-color);
+        }
+
+        .formula {
+            font-family: 'Courier New', monospace;
+            background-color: #f5f5f5;
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: inline-block;
+            margin: 10px 0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            .back-button-container {
+                position: relative;
+                top: auto;
+                left: auto;
+                margin-bottom: 15px;
+            }
+            
+            .back-button {
+                position: relative;
+                margin: 0 auto 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Back to Home Button -->
+    <div class="back-button-container">
+        <button class="back-button" onclick="goBackHome()">&#8592; Back to Parameters</button>
+    </div>
+
+    <div class="container">
+        <h1>Water Depth Measurement</h1>
+        
+        <div class="definition-box">
+            <div class="definition-title">Depth Measurement</div>
+            <p>The determination of water column height using pressure sensors that measure the hydrostatic pressure exerted by the water above the sensor.</p>
+        </div>
+
+        <p>Accurate depth measurement is fundamental for hydrological studies, flood monitoring, navigation, and ecological research in aquatic environments.</p>
+
+        <button class="btn" onclick="toggleInfo()">Show Measurement Details</button>
+        
+        <div class="info-section" id="moreInfo" style="display: none;">
+            <h2>Measurement Principles</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Pressure-based measurement:</span> Uses non-vented strain gauge transducers to measure hydrostatic pressure</li>
+                <li><span class="highlight">Differential measurement:</span> One side exposed to water pressure, the other to a vacuum reference</li>
+                <li><span class="highlight">Depth calculation:</span> Derived from pressure difference using the formula:
+                    <div class="formula">Depth = (P<sub>water</sub> - P<sub>atm</sub>) / (ρ × g)</div>
+                    where ρ is water density and g is gravitational acceleration
+                </li>
+            </ul>
+
+            <img src="images/depth-sensor.jpg" alt="Depth measurement sensor" class="sensor-image">
+
+            <h2>Sensor Types</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Strain gauge sensors:</span> Most common, using piezoresistive technology</li>
+                <li><span class="highlight">Capacitive sensors:</span> For high-accuracy applications</li>
+                <li><span class="highlight">Vented vs. non-vented:</span>
+                    <ul>
+                        <li>Non-vented requires barometric compensation</li>
+                        <li>Vented uses a vented cable to automatically compensate</li>
+                    </ul>
+                </li>
+            </ul>
+
+            <h2>Environmental Factors</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Water density variations:</span> Affected by temperature and salinity (requires compensation)</li>
+                <li><span class="highlight">Barometric pressure:</span> Significant for non-vented sensors (1 mbar ≈ 1 cm water column)</li>
+                <li><span class="highlight">Temperature effects:</span> On both water density and sensor electronics</li>
+                <li><span class="highlight">Waves and turbulence:</span> Can cause measurement fluctuations</li>
+            </ul>
+
+            <h2>Calibration and Maintenance</h2>
+            <ul class="feature-list">
+                <li><span class="highlight">Zero calibration:</span> Performed in air to compensate for atmospheric pressure</li>
+                <li><span class="highlight">Span calibration:</span> Using known water columns or pressure standards</li>
+                <li><span class="highlight">Compensation:</span> For temperature and salinity effects on water density</li>
+                <li><span class="highlight">Maintenance:</span> Regular cleaning to prevent biofouling and sediment accumulation</li>
+            </ul>
+
+            <h2>Applications</h2>
+            <ul class="feature-list">
+                <li>Hydrological monitoring (rivers, lakes, reservoirs)</li>
+                <li>Flood warning systems</li>
+                <li>Oceanographic and coastal research</li>
+                <li>Wastewater treatment process control</li>
+                <li>Navigation and dredging operations</li>
+                <li>Ecological habitat studies</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function goBackHome() {
+            window.location.href = 'parameters';
+        }
+
+        function toggleInfo() {
+            const info = document.getElementById("moreInfo");
+            const button = document.querySelector(".btn");
+            
+            if (info.style.display === "none") {
+                info.style.display = "block";
+                button.textContent = "Hide Measurement Details";
+            } else {
+                info.style.display = "none";
+                button.textContent = "Show Measurement Details";
+            }
+        }
+    </script>
+</body>
+</html>

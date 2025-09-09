@@ -1,0 +1,185 @@
+/* General Styling */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    transition: background 0.3s, color 0.3s;
+}
+
+/* Color Variables */
+:root {
+    --primary: #2F4F4F;
+    --primary-light: #3a5f5f;
+    --secondary: #778899;
+    --accent: #20B2AA;
+    --light-bg: #f5f5f5;
+    --dark-text: #2d3748;
+    --border-color: #e0e0e0;
+    --white: #ffffff;
+    --dark-bg: #1e1e1e;
+    --dark-card: #2b2b2b;
+    --dark-text-color: #dddddd;
+}
+
+/* Light & Dark Mode */
+body.dark-mode {
+    background-color: var(--dark-bg);
+    color: var(--dark-text-color);
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s;
+}
+
+.dark-mode .container {
+    background: var(--dark-card);
+}
+
+/* Header */
+header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+h1 {
+    color: var(--primary);
+    margin-bottom: 5px;
+}
+
+p {
+    color: var(--secondary);
+    font-size: 16px;
+}
+
+.dark-mode h1 {
+    color: var(--accent);
+}
+
+.dark-mode p {
+    color: var(--dark-text-color);
+}
+
+/* Theme Toggle Button */
+#themeToggle {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    background: var(--primary);
+    color: white;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+#themeToggle:hover {
+    background: var(--primary-light);
+}
+
+.dark-mode #themeToggle {
+    background: var(--accent);
+}
+
+/* Grid Layout */
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+/* Card Styling */
+.card {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s, box-shadow 0.3s;
+    cursor: pointer;
+    border: 1px solid var(--border-color);
+}
+
+.dark-mode .card {
+    background: var(--dark-card);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Image */
+.card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+/* Card Content */
+.card-content {
+    padding: 15px;
+}
+
+.card h2 {
+    color: var(--primary);
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.dark-mode .card h2 {
+    color: var(--accent);
+}
+
+.card p {
+    font-size: 14px;
+    color: var(--dark-text);
+}
+
+.dark-mode .card p {
+    color: var(--dark-text-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    }
+}
+
+/* Back Button */
+.back-button-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+.back-button {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--primary-light);
+}
+
+.dark-mode .back-button {
+    background-color: var(--accent);
+}
+
+.dark-mode .back-button:hover {
+    background-color: var(--primary-light);
+}

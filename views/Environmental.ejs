@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Other Environmental Parameters</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/styles/environmetal.css">
+</head>
+
+<body class="bg-gray-100">
+    <!-- Back to Home Button -->
+    <div class="back-button-container mb-4">
+        <button class="back-button px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600" onclick="goBackHome()">&#8592; Back to Home</button>
+    </div>
+
+    <div class="container mx-auto p-6">
+        <h2 class="text-3xl font-bold text-gray-700 mb-6">Other Environmental Parameters</h2>
+
+        <!-- Form Box -->
+        <div class="bg-white shadow-md rounded-lg p-6">
+            <form class="grid grid-cols-1 sm:grid-cols-2 gap-6" id="other-environmental-parameters-form" onsubmit="saveFormData(event)">
+                <!-- Sample ID -->
+                <div class="form-group">
+                    <label for="sampleID" class="block text-gray-700 font-semibold mb-2">Sample ID</label>
+                    <input type="text" id="sampleID" name="sampleID" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter Sample ID">
+                </div>
+
+                <!-- Radiological -->
+                <div class="form-group">
+                    <label for="radiological" class="block text-gray-700 font-semibold mb-2">Radiological (µSv/h)</label>
+                    <input type="number" step="0.01" id="radiological" name="radiological" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter Radiological Value">
+                </div>
+
+                <!-- Noise Pollution -->
+                <div class="form-group">
+                    <label for="noise" class="block text-gray-700 font-semibold mb-2">Noise Pollution (dB)</label>
+                    <input type="number" step="0.01" id="noise" name="noise" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter Noise Pollution Level">
+                </div>
+
+                <!-- Soil Quality -->
+                <div class="form-group">
+                    <label for="soil" class="block text-gray-700 font-semibold mb-2">Soil Quality (pH)</label>
+                    <input type="number" step="0.01" id="soil" name="soil" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter Soil Quality (pH)">
+                </div>
+
+                <!-- Waste Management Indicators -->
+                <div class="form-group">
+                    <label for="waste" class="block text-gray-700 font-semibold mb-2">Waste Management Indicators (kg/person)</label>
+                    <input type="number" step="0.01" id="waste" name="waste" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400" placeholder="Enter Waste Management Indicator">
+                </div>
+
+                <!-- Save and Reset Buttons -->
+                <div class="form-group sm:col-span-2 flex justify-between">
+                    <button type="submit" class="save-button w-full sm:w-auto py-2 px-4 bg-green-500 text-white rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300">Save</button>
+                    <button type="reset" class="reset-button w-full sm:w-auto py-2 px-4 bg-gray-500 text-white rounded-lg hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-300">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript for form validation -->
+    <script>
+        function goBackHome() {
+            window.location.href = 'fwater';
+        }
+
+        function saveFormData(event) {
+            event.preventDefault();
+
+            const sampleID = document.getElementById('sampleID').value;
+            const radiological = document.getElementById('radiological').value;
+            const noise = document.getElementById('noise').value;
+            const soil = document.getElementById('soil').value;
+            const waste = document.getElementById('waste').value;
+
+            if (sampleID && radiological && noise && soil && waste) {
+                fetch('/environmental', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        sampleID,
+                        radiological,
+                        noise,
+                        soil,
+                        waste
+                    })
+                })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Data saved successfully!');
+                        document.getElementById('other-environmental-parameters-form').reset();
+                        window.location.href = '/fwater';
+                    } else {
+                        alert('Error saving data');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Error saving data');
+                });
+            } else {
+                alert('Please fill in all fields before saving.');
+            }
+        }
+    </script>
+</body>
+</html>
