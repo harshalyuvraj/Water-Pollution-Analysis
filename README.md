@@ -1,11 +1,8 @@
 Water Pollution Analysis Project
 🔗 Project Links
 
-GitHub Repository: (https://github.com/bkumar0750/Water-Pollution-Analysis)
- (replace # with actual link)
-
 Live Website: https://water-pollution.onrender.com/
- (if hosted , Render/Vercel/)
+
 
 Published Work / Report: Water Pollution Analysis Report (PDF)
  (attach/report link if available)
