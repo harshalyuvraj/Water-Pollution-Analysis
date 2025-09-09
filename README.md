@@ -1,13 +1,3 @@
-Water Pollution Analysis Project
-🔗 Project Links
-
-Live Website: https://water-pollution.onrender.com/
-
-
-Published Work / Report: Water Pollution Analysis Report (PDF)
- (attach/report link if available)
-
-📄 Comprehensive Document
 1. Objectives
 
 To design and implement a full-stack web application for analyzing and storing water pollution data.
@@ -62,11 +52,7 @@ Enhanced UI/UX with formal login/signup and interactive result display.
 
 Prepared a technical report (~60 pages) detailing methodology, case studies, and analysis.
 
-📂 Proofs & Code Links
 
-Source Code (GitHub):(https://github.com/bkumar0750/Water-Pollution-Analysis)
-
-Screenshots / Proof of Work:
 
 🔹 Login & Signup Page
 
@@ -76,4 +62,3 @@ Screenshots / Proof of Work:
 
 🔹 AQI Calculator
 
-🔹 MongoDB collections screenshot (showing stored sample IDs & data)
